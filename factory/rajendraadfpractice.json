@@ -1,0 +1,9 @@
+{
+	"name": "rajendraadfpractice",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "92a35143-ae73-4837-ad36-a8bbd3aedfb6",
+		"tenantId": "29ff6e04-4c1a-467a-88b4-c4b9de50e221"
+	}
+}

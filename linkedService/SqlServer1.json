@@ -1,0 +1,17 @@
+{
+	"name": "SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"Db_name": {
+				"type": "string",
+				"defaultValue": "TestDB1"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Data Source=rajendra-sql-server.database.windows.net;Initial Catalog=@{linkedService().Db_name};User ID=rajendra"
+		}
+	}
+}

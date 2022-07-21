@@ -1,0 +1,28 @@
+{
+	"name": "storageeventrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"sourceFilePath": "@triggerBody().folderPath",
+					"sourceFileName": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/adfdemo/blobs/output",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/afa26428-0851-4887-b779-3a965815a0d9/resourceGroups/rajendra_adf/providers/Microsoft.Storage/storageAccounts/storageadfnew",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

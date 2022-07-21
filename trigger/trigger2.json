@@ -1,0 +1,27 @@
+{
+	"name": "trigger2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyDaily and Sales file",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"FileName": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/adfdemo/blobs/Allfiles",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/afa26428-0851-4887-b779-3a965815a0d9/resourceGroups/rajendra_adf/providers/Microsoft.Storage/storageAccounts/storageadfnew",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
