@@ -1,0 +1,112 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "rajendraadfpractice"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"storageeventrigger_properties_pipeline1_parameters_sourceFilePath": {
+			"type": "string",
+			"defaultValue": "@triggerBody().folderPath"
+		},
+		"storageeventrigger_properties_pipeline1_parameters_sourceFileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"storageeventrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/afa26428-0851-4887-b779-3a965815a0d9/resourceGroups/rajendra_adf/providers/Microsoft.Storage/storageAccounts/storageadfnew"
+		},
+		"trigger1_properties_pipeline2_parameters_Dbnamefrompipeline": {
+			"type": "string",
+			"defaultValue": "Test_DB"
+		},
+		"trigger1_properties_pipeline2_parameters_SourceTablefrompipeline": {
+			"type": "string",
+			"defaultValue": "Table1"
+		},
+		"trigger1_properties_pipeline2_parameters_TargetTablefrompipeline": {
+			"type": "string",
+			"defaultValue": "Table2"
+		},
+		"trigger2_properties_CopyDaily and Sales file_parameters_FileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"trigger2_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/afa26428-0851-4887-b779-3a965815a0d9/resourceGroups/rajendra_adf/providers/Microsoft.Storage/storageAccounts/storageadfnew"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "rajendraadfpractice_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"storageeventrigger_properties_pipeline1_parameters_sourceFilePath": {
+						"value": "[parameters('storageeventrigger_properties_pipeline1_parameters_sourceFilePath')]"
+					},
+					"storageeventrigger_properties_pipeline1_parameters_sourceFileName": {
+						"value": "[parameters('storageeventrigger_properties_pipeline1_parameters_sourceFileName')]"
+					},
+					"storageeventrigger_properties_typeProperties_scope": {
+						"value": "[parameters('storageeventrigger_properties_typeProperties_scope')]"
+					},
+					"trigger1_properties_pipeline2_parameters_Dbnamefrompipeline": {
+						"value": "[parameters('trigger1_properties_pipeline2_parameters_Dbnamefrompipeline')]"
+					},
+					"trigger1_properties_pipeline2_parameters_SourceTablefrompipeline": {
+						"value": "[parameters('trigger1_properties_pipeline2_parameters_SourceTablefrompipeline')]"
+					},
+					"trigger1_properties_pipeline2_parameters_TargetTablefrompipeline": {
+						"value": "[parameters('trigger1_properties_pipeline2_parameters_TargetTablefrompipeline')]"
+					},
+					"trigger2_properties_CopyDaily and Sales file_parameters_FileName": {
+						"value": "[parameters('trigger2_properties_CopyDaily and Sales file_parameters_FileName')]"
+					},
+					"trigger2_properties_typeProperties_scope": {
+						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
